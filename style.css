@@ -1,0 +1,2879 @@
+/*
+ * =================================================================
+ * PROFESSIONAL CSS FOR SHOEMART/EASYKART (index.php) - UPDATED
+ * =================================================================
+ */
+
+/* 1. Global Reset, Variables, and Typography */
+:root {
+    --primary-color: #007bff; /* Blue for call-to-action */
+    --secondary-color: #6c757d; /* Grey for secondary actions */
+    --accent-color: #ffc107; /* Yellow for highlights/sale */
+    --background-light: #f8f9fa; /* Light grey background */
+    --text-dark: #343a40; /* Dark text */
+    --border-light: #dee2e6;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    flex-grow: 1;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue */
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- */
+
+/* 2. Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.spinner {
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- */
+
+/* 3. Navigation (Navbar) */
+.navbar {
+    background-color: white;
+    box-shadow: var(--shadow-light);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links > li > a {
+    color: var(--text-dark);
+    padding: 10px 0;
+    position: relative;
+    font-weight: 500;
+}
+
+.nav-links > li > a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links > li > a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: var(--shadow-light);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-dark);
+    padding: 12px 16px;
+    display: block;
+    font-weight: normal;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background-light);
+}
+
+/* --- */
+
+/* 4. Sidebar */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    align-self: flex-start; /* Keeps the sidebar at the top */
+    position: sticky;
+    top: 90px; /* Position below navbar */
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.profile-icon {
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.login-btn, .logout-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+.logout-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #5a6268;
+}
+
+.sidebar-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-light);
+    margin: 15px 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 12px 0;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    padding-left: 5px;
+}
+
+.sidebar-menu li a:hover {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    padding-left: 15px;
+}
+
+/* --- */
+
+/* 5. Main Content and Banner */
+.main-content {
+    flex-grow: 1;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.banner-overlay h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-overlay p {
+    font-size: 1.25rem;
+    margin-bottom: 25px;
+}
+
+/* --- */
+
+/* 6. Products Section */
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.product-grid {
+    display: grid;
+    /* 💥 MODIFIED: Enforce 4 columns on large screens for a clean layout */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-image-container {
+    position: relative;
+    aspect-ratio: 1 / 1; /* Square images */
+    overflow: hidden;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.05);
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.product-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.product-info h3 {
+    font-size: 1.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.product-info .brand {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.product-info .price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.original-price {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    text-decoration: line-through;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid var(--border-light);
+}
+
+.wishlist-btn {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--border-light);
+    flex: 1;
+    font-weight: 500;
+}
+
+.wishlist-btn:hover {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.view-btn {
+    flex: 1;
+}
+
+/* --- */
+
+/* 7. Buttons */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.btn.primary-btn, .btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn.primary-btn:hover, .btn.primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+}
+
+.btn.secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn.secondary:hover {
+    background-color: #5a6268;
+}
+
+#show-more-btn {
+    display: block;
+    margin: 20px auto 40px;
+    width: 250px;
+}
+
+/* --- */
+
+/* 8. Why Choose Us Section */
+.why-choose-us {
+    background-color: white;
+    padding: 60px 20px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.features-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.feature {
+    flex: 1;
+    padding: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added transform and box-shadow */
+    border-radius: 8px;
+    border: 1px solid transparent; /* Ensure smooth transition */
+}
+
+/* Base Hover Effect (already in your code) */
+.feature:hover {
+    background-color: var(--background-light);
+    transform: translateY(-5px); /* Add a slight upward lift */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add a noticeable shadow */
+    border: 1px solid var(--border-light);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+    filter: invert(30%) sepia(85%) saturate(3000%) hue-rotate(200deg) brightness(90%) contrast(100%);
+    transition: transform 0.3s ease; /* Add transition for the icon */
+}
+
+/* Hover effect on the icon (when hovering over the feature card) */
+.feature:hover .feature-icon {
+    transform: scale(1.1) rotate(-5deg); /* Scale up and slight rotation for emphasis */
+    filter: invert(15%) sepia(80%) saturate(3000%) hue-rotate(200deg) brightness(80%) contrast(100%); /* Slightly darker/more intense color */
+}
+
+.feature h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    transition: color 0.3s ease; /* Add transition for the heading */
+}
+
+/* Hover effect on the heading */
+.feature:hover h3 {
+    color: #0056b3; /* Darker primary color on hover */
+    text-decoration: underline; /* Add underline for visual feedback */
+}
+
+.feature p {
+    color: var(--secondary-color);
+}
+/* --- */
+
+/* 9. Modals (General Styles) */
+#confirm-modal, #product-modal, #buy-now-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Controlled by JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content, .modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-hover);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.9);
+    animation: modal-open 0.3s forwards ease-out;
+}
+
+@keyframes modal-open {
+    to { transform: scale(1); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--text-dark);
+}
+
+/* Confirmation Modal Specifics */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Product Modal Specifics */
+#product-modal .modal-box {
+    display: flex;
+    gap: 30px;
+    max-width: 800px;
+}
+
+#product-modal img {
+    width: 45%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+#product-modal .details {
+    width: 55%;
+}
+
+#modal-brand {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+#modal-price {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+#modal-discount {
+    color: #28a745; /* Green for discount */
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#modal-desc {
+    margin-top: 15px;
+    line-height: 1.8;
+    border-top: 1px solid var(--border-light);
+    padding-top: 15px;
+    color: var(--text-dark);
+}
+
+#product-modal .modal-actions {
+    justify-content: flex-start;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+    margin-top: 20px;
+}
+
+.add-cart-btn {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    font-weight: 700;
+}
+.add-cart-btn:hover {
+    background-color: #ffda6a;
+}
+.buy-now-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Buy Now Modal Specifics */
+.buy-now-modal-box {
+    max-width: 900px;
+}
+
+.buy-now-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.buy-now-image-wrapper {
+    width: 40%;
+    flex-shrink: 0;
+}
+
+#buy-now-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: var(--shadow-light);
+}
+
+.buy-now-details {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+#buy-now-name {
+    font-size: 1.5rem;
+}
+
+#buy-now-form label {
+    display: block;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+#buy-now-form input[type="text"],
+#buy-now-form input[type="email"],
+#buy-now-form textarea,
+#buy-now-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#buy-now-form input:focus,
+#buy-now-form textarea:focus,
+#buy-now-form select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+#buy-now-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#buy-now-form button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+/* --- */
+
+/* 10. Footer */
+.footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--accent-color);
+}
+
+.footer a:hover {
+    color: white;
+}
+
+/* --- */
+
+/* 11. Responsiveness */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    .product-grid {
+        /* 💥 MODIFIED: 3 columns on medium screens */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-light);
+    }
+
+    .sidebar-menu {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .sidebar-menu li a {
+        text-align: center;
+        padding: 10px 15px;
+    }
+
+    .sidebar-menu li a:hover {
+        padding-left: 15px;
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .banner {
+        height: 300px;
+    }
+
+    .product-grid {
+        /* 💥 MODIFIED: 2 columns on tablet screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #product-modal .modal-box {
+        flex-direction: column;
+        max-width: 500px;
+    }
+    #product-modal img, #product-modal .details {
+        width: 100%;
+    }
+
+    .buy-now-container {
+        flex-direction: column;
+    }
+    .buy-now-image-wrapper, .buy-now-details {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 15px;
+    }
+
+    .why-choose-us {
+        padding: 40px 15px;
+    }
+
+    .features-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .banner-overlay h1 {
+        font-size: 2.5rem;
+    }
+
+    .banner-overlay p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        gap: 5px;
+        display: none; /* Mobile Menu Hidden */
+    }
+    .nav-links > li > a {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Simple toggle for a mobile menu would be needed here */
+    .dropdown:hover .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: var(--background-light);
+        border-radius: 0;
+    }
+
+    .product-grid {
+        /* 💥 MODIFIED: 1 column on small mobile screens */
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-menu {
+        flex-direction: column;
+    }
+    .sidebar-menu li a {
+        text-align: left;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+}
+
+/*
+ * =================================================================
+ * PROFESSIONAL CSS FOR SHOEMART/EASYKART (Shared Styles + Wishlist) - UPDATED
+ * =================================================================
+ */
+
+/* 1. Global Reset, Variables, and Typography */
+:root {
+    --primary-color: #007bff; /* Blue for call-to-action */
+    --secondary-color: #6c757d; /* Grey for secondary actions */
+    --accent-color: #ffc107; /* Yellow for highlights/sale */
+    --background-light: #f8f9fa; /* Light grey background */
+    --text-dark: #343a40; /* Dark text */
+    --border-light: #dee2e6;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    flex-grow: 1;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue */
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- */
+
+/* 2. Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.spinner {
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- */
+
+/* 3. Navigation (Navbar) */
+.navbar {
+    background-color: white;
+    box-shadow: var(--shadow-light);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links > li > a {
+    color: var(--text-dark);
+    padding: 10px 0;
+    position: relative;
+    font-weight: 500;
+}
+
+.nav-links > li > a:hover, .nav-links > li > a.active {
+    color: var(--primary-color);
+}
+
+.nav-links > li > a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: var(--shadow-light);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-dark);
+    padding: 12px 16px;
+    display: block;
+    font-weight: normal;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background-light);
+}
+
+/* --- */
+
+/* 4. Sidebar */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    align-self: flex-start;  
+    position: sticky;
+    top: 90px;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.profile-icon {
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.login-btn, .logout-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 5px;
+    color: white;
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+.logout-btn {
+    background-color: var(--secondary-color);
+}
+
+.logout-btn:hover {
+    background-color: #5a6268;
+}
+
+.sidebar-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-light);
+    margin: 15px 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 12px 0;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    padding-left: 5px;
+}
+
+.sidebar-menu li a:hover, .sidebar-menu li a.active {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    padding-left: 15px;
+}
+
+/* --- */
+
+/* 5. Main Content (Wishlist Specific) */
+.main-content {
+    flex-grow: 1;
+    background-color: white; /* Make the main content stand out */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.cart-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+    color: var(--text-dark);
+}
+
+.empty-cart {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    padding: 40px;
+    text-align: center;
+    border: 1px dashed var(--border-light);
+    border-radius: 8px;
+}
+
+/* Wishlist Grid Layout */
+.cart-grid {
+    display: grid;
+    /* 💥 MODIFIED: Enforce 4 columns on large screens */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.cart-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.cart-card:hover {
+    box-shadow: var(--shadow-light);
+}
+
+.cart-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.cart-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-card p {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.cart-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.cart-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn-remove, .btn-buy {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-remove {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-remove:hover {
+    background-color: #dc3545; /* Red on hover */
+}
+
+.btn-buy {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-buy:hover {
+    background-color: #0056b3;
+}
+
+/* --- */
+
+/* 6. Footer */
+.footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer .container {
+    display: block; /* Override flex for footer content */
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--accent-color);
+}
+
+.footer a:hover {
+    color: white;
+}
+
+/* --- */
+
+/* 7. Responsiveness */
+
+/* Add a breakpoint for 3 columns on slightly smaller screens */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    .cart-grid {
+        /* 3 columns on medium screens */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-light);
+    }
+
+    .sidebar-menu {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .sidebar-menu li {
+        flex: 1;
+    }
+
+    .sidebar-menu li a {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .sidebar-menu li a:hover, .sidebar-menu li a.active {
+        padding-left: 0;
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .cart-grid {
+        /* 2 columns on tablet screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        gap: 5px;
+        /* Note: For actual mobile use, you'd need JS to toggle this */
+        display: none; 
+    }
+    
+    .cart-grid {
+        /* Single column on mobile */
+        grid-template-columns: 1fr;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+    }
+}
+
+/* =================================================================
+   ORDER PAGE STYLES FOR SHOEMART/EASYKART
+================================================================= */
+
+/* Orders Grid */
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row on large screens */
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Single Order Card */
+.order-card {
+    background-color: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.order-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+}
+
+.order-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.order-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-dark);
+}
+
+.order-card p {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+}
+
+.order-card .price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 5px;
+}
+
+/* Responsive Orders Grid */
+
+/* 3 columns for medium screens */
+@media (max-width: 1200px) {
+    .orders-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 2 columns for tablets */
+@media (max-width: 992px) {
+    .orders-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 1 column for mobile */
+@media (max-width: 576px) {
+    .orders-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Optional: Add a subtle hover effect on individual text rows */
+.order-card p:hover {
+    color: var(--primary-color);
+}
+
+/*
+ * =================================================================
+ * PROFESSIONAL CSS FOR SHOEMART/EASYKART (Shared Styles + Cart)
+ * =================================================================
+ */
+
+/* 1. Global Reset, Variables, and Typography */
+:root {
+    --primary-color: #007bff; /* Blue for call-to-action */
+    --secondary-color: #6c757d; /* Grey for secondary actions */
+    --accent-color: #ffc107; /* Yellow for highlights/sale */
+    --background-light: #f8f9fa; /* Light grey background */
+    --text-dark: #343a40; /* Dark text */
+    --border-light: #dee2e6;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    flex-grow: 1;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue */
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- */
+
+/* 2. Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.spinner {
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- */
+
+/* 3. Navigation (Navbar) */
+.navbar {
+    background-color: white;
+    box-shadow: var(--shadow-light);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links > li > a {
+    color: var(--text-dark);
+    padding: 10px 0;
+    position: relative;
+    font-weight: 500;
+}
+
+.nav-links > li > a:hover, .nav-links > li > a.active {
+    color: var(--primary-color);
+}
+
+.nav-links > li > a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: var(--shadow-light);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-dark);
+    padding: 12px 16px;
+    display: block;
+    font-weight: normal;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background-light);
+}
+
+/* --- */
+
+/* 4. Sidebar */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    align-self: flex-start;  
+    position: sticky;
+    top: 90px;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.profile-icon {
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.login-btn, .logout-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 5px;
+    color: white;
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+.logout-btn {
+    background-color: var(--secondary-color);
+}
+
+.logout-btn:hover {
+    background-color: #5a6268;
+}
+
+.sidebar-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-light);
+    margin: 15px 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 12px 0;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    padding-left: 5px;
+}
+
+.sidebar-menu li a:hover, .sidebar-menu li a.active {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    padding-left: 15px;
+}
+
+/* --- */
+
+/* 5. Main Content (Cart Specific) */
+.main-content {
+    flex-grow: 1;
+    background-color: white; /* Make the main content stand out */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.cart-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+    color: var(--text-dark);
+}
+
+.empty-cart {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    padding: 40px;
+    text-align: center;
+    border: 1px dashed var(--border-light);
+    border-radius: 8px;
+}
+
+/* Cart Grid Layout - 4 columns on large screens */
+.cart-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default 4 columns */
+    gap: 25px;
+}
+
+.cart-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.cart-card:hover {
+    box-shadow: var(--shadow-light);
+}
+
+.cart-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.cart-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-card p {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.cart-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.cart-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    gap: 10px;
+}
+
+/* 💥 ADJUSTMENT for cart.php: Ensure the form takes up its share of flex space */
+.cart-actions form {
+    flex: 1; 
+}
+
+/* Buttons */
+.btn-remove, .btn-buy {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Important for button inside a flex:1 form/container */
+    text-align: center;
+}
+
+.btn-remove {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-remove:hover {
+    background-color: #dc3545; /* Red on hover */
+}
+
+.btn-buy {
+    background-color: var(--primary-color);
+    color: white;
+    flex: 1; /* Apply flex directly to Buy Now button */
+}
+
+.btn-buy:hover {
+    background-color: #0056b3;
+}
+
+/* --- */
+
+/* 6. Footer */
+.footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer .container {
+    display: block; 
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--accent-color);
+}
+
+.footer a:hover {
+    color: white;
+}
+
+/* --- */
+
+/* 7. Responsiveness */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    .cart-grid {
+        /* 3 columns on medium screens */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-light);
+    }
+
+    .sidebar-menu {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .sidebar-menu li {
+        flex: 1;
+    }
+
+    .sidebar-menu li a {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .sidebar-menu li a:hover, .sidebar-menu li a.active {
+        padding-left: 0;
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .cart-grid {
+        /* 2 columns on tablet screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        gap: 5px;
+        /* Note: For actual mobile use, you'd need JS to toggle this */
+        display: none; 
+    }
+    
+    .cart-grid {
+        /* Single column on mobile */
+        grid-template-columns: 1fr;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+    }
+}
+
+/*
+ * =================================================================
+ * PROFESSIONAL CSS FOR SHOEMART/EASYKART (Login Page Specific)
+ * =================================================================
+ */
+
+/* 1. Global Variables (Ensure these are defined at the top of style.css) */
+/*
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-light: #f8f9fa;
+    --text-dark: #343a40;
+    --border-light: #dee2e6;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+*/
+
+/* 2. Login Page Container Styling */
+.login-page {
+    /* Full screen background for login page */
+    background-color: var(--background-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; /* Override any body margins */
+}
+
+/* 3. Login Form Card Styling */
+.login-form {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 400px; /* Standard form width */
+    text-align: center;
+    border: 1px solid var(--border-light);
+}
+
+.login-form h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* 4. Input Field Styling */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* 5. Submit Button Styling */
+.login-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 6. Responsive Adjustments (for very small screens) */
+@media (max-width: 480px) {
+    .login-form {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+}
+
+/* 2. Login Page Container Styling */
+.login-page {
+    background-color: var(--background-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* 3. Login Form Card Styling */
+.login-form {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid var(--border-light);
+}
+
+.login-form h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* 4. Input Field Styling */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* 5. Submit Button Styling */
+.login-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add this to your style.css */
+.login-form p {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    /* The color is set inline in your HTML, but you can override or reinforce here */
+    color: #dc3545 !important; /* A standard Bootstrap red for errors */
+}
+
+/*
+ * =================================================================
+ * PROFESSIONAL CSS FOR ADMIN DASHBOARD
+ * =================================================================
+ */
+
+/* 1. Root Variables & Reset (Shared) */
+:root {
+    --admin-primary: #007bff; /* Blue for key actions/branding */
+    --admin-secondary: #6c757d; /* Grey for text/borders */
+    --admin-background: #f4f6f9; /* Light, clean background */
+    --admin-sidebar-bg: #343a40; /* Dark sidebar */
+    --admin-text-light: #f8f9fa;
+    --admin-text-dark: #333;
+    --admin-border-light: #dee2e6;
+    --admin-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --admin-success: #28a745;
+    --admin-danger: #dc3545;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--admin-background);
+    color: var(--admin-text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* 2. Header/Navbar */
+.admin-header {
+    background-color: white;
+    box-shadow: var(--admin-shadow);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--admin-border-light);
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.admin-header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--admin-primary);
+}
+
+.admin-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-name {
+    font-weight: 600;
+    color: var(--admin-text-dark);
+}
+
+.admin-name i {
+    margin-right: 5px;
+    color: var(--admin-primary);
+}
+
+.btn-view-site {
+    background-color: var(--admin-secondary);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn-view-site:hover {
+    background-color: #5a6268;
+}
+
+/* 3. Main Layout */
+.admin-container {
+    display: flex;
+    flex-grow: 1;
+    min-height: calc(100vh - 67px); /* Adjust height based on header height */
+}
+
+/* 4. Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: var(--admin-sidebar-bg);
+    color: var(--admin-text-light);
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    font-size: 1.4rem;
+    padding: 0 20px 10px;
+    margin-bottom: 15px;
+    color: var(--admin-primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--admin-text-light);
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:focus,
+.sidebar ul li a.active {
+    background-color: var(--admin-primary);
+    color: white;
+}
+
+/* 5. Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.main-content section {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--admin-shadow);
+    margin-bottom: 30px;
+}
+
+.main-content h2 {
+    font-size: 1.8rem;
+    color: var(--admin-text-dark);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--admin-border-light);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 6. Dashboard Stats */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border-left: 5px solid var(--admin-primary);
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card p {
+    color: var(--admin-secondary);
+    margin-bottom: 5px;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    color: var(--admin-primary);
+}
+
+/* 7. Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--admin-border-light);
+    vertical-align: middle;
+}
+
+table th {
+    background-color: var(--admin-primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td img {
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+table td button {
+    background-color: var(--admin-secondary);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+
+table td button:hover {
+    background-color: #5a6268;
+}
+
+/* 8. Specific Button Styles (from inline <style> block) */
+.delete-btn { 
+    background: var(--admin-danger) !important; 
+}
+.delete-btn:hover {
+    background: #e60000 !important; 
+    transform:scale(1.05);
+}
+.add-btn { 
+    background: var(--admin-success) !important;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.add-btn:hover {
+    background: #218838 !important;
+}
+
+/* 9. Modal Styles (from inline <style> block) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    min-width: 380px;
+    max-width: 90%;
+    box-shadow: var(--admin-shadow);
+}
+
+.modal-content h3 {
+    color: var(--admin-primary);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--admin-border-light);
+    padding-bottom: 10px;
+}
+
+.modal-content label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--admin-text-dark);
+    text-align: left;
+}
+
+.modal-content input, 
+.modal-content select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid var(--admin-border-light);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: var(--admin-primary);
+    outline: none;
+}
+
+.modal-content button {
+    background-color: var(--admin-primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.modal-content button:nth-child(even) { /* Cancel Button */
+    background-color: var(--admin-secondary);
+}
+
+.modal-content button:hover {
+    opacity: 0.9;
+}
+
+/* 10. Responsive Layout */
+@media (max-width: 992px) {
+    .admin-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+    }
+    .sidebar h2 {
+        display: none;
+    }
+    .sidebar ul {
+        display: flex;
+        justify-content: space-around;
+        overflow-x: auto;
+    }
+    .sidebar ul li a {
+        white-space: nowrap;
+        padding: 10px 15px;
+        text-align: center;
+    }
+    .admin-header {
+        padding: 10px 20px;
+    }
+    .main-content {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .sidebar ul {
+        flex-wrap: wrap;
+    }
+    .sidebar ul li {
+        width: 50%;
+    }
+    table, table tbody, table tr, table td, table th {
+        display: block;
+    }
+    table thead {
+        display: none;
+    }
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--admin-border-light);
+        border-radius: 8px;
+    }
+    table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: 600;
+        text-align: left;
+    }
+}
+
+/*
+ * =================================================================
+ * PROFESSIONAL CSS FOR PRIVACY/TERMS PAGES
+ * =================================================================
+ */
+
+/* 1. Global Page Structure (Assuming body/root variables are defined earlier) */
+
+/* 2. Policy Container Styling */
+.policy-container {
+    /* Center the content and limit its width for readability */
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white; /* Clean background for the content */
+    border-radius: 10px;
+    box-shadow: var(--shadow-light); /* Use the shared shadow variable */
+}
+
+/* 3. Headings and Icons */
+.policy-container h1 {
+    font-size: 2.2rem;
+    color: var(--primary-color); /* Use the shared primary color for branding */
+    margin-bottom: 25px;
+    border-bottom: 3px solid var(--border-light);
+    padding-bottom: 15px;
+}
+
+.policy-container h1 i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+.policy-container h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.policy-container h2 i {
+    margin-right: 8px;
+    color: var(--secondary-color); /* Use secondary color for section icons */
+}
+
+/* 4. Text and List Styles */
+.policy-container p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.policy-container ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+.policy-container ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.policy-container ul li::before {
+    content: "•"; /* Custom bullet point */
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* 5. Contact Email Emphasis */
+.policy-container strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 6. Back to Home Button/Link */
+.back-home {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+}
+
+.back-home a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.back-home a:hover {
+    background-color: #5a6268;
+    color: white; /* Ensure text remains white on hover */
+}
+
+.back-home a i {
+    margin-right: 8px;
+}
+
+/* 7. Responsive Adjustments */
+@media (max-width: 960px) {
+    .policy-container {
+        margin: 30px 15px;
+        padding: 30px 20px;
+    }
+
+    .policy-container h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+}
+
+/* 8. Simple Site Refresh */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #475569;
+    --accent-color: #e2e8f0;
+    --background-light: #f8fafc;
+    --text-dark: #0f172a;
+    --border-light: #e2e8f0;
+    --shadow-light: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-hover: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background-light);
+}
+
+.navbar,
+.sidebar,
+.banner,
+.product-card,
+.cart-card,
+.feature,
+.modal-content,
+.modal-box,
+.login-form,
+.policy-container,
+.terms-container,
+.contact-container > * ,
+.admin-header,
+.main-content section {
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.navbar {
+    border-bottom: 1px solid var(--border-light);
+    padding: 12px 20px;
+}
+
+.container {
+    gap: 20px;
+    padding: 16px;
+}
+
+.sidebar {
+    padding: 16px;
+    top: 80px;
+}
+
+.banner {
+    height: 340px;
+    margin-bottom: 28px;
+}
+
+.banner-overlay {
+    background: rgba(15, 23, 42, 0.45);
+}
+
+.banner-overlay h1 {
+    font-size: 2.6rem;
+}
+
+.banner-overlay p {
+    font-size: 1rem;
+}
+
+.section-title {
+    font-size: 1.7rem;
+    color: var(--text-dark);
+}
+
+.product-grid,
+.cart-grid {
+    gap: 16px;
+}
+
+.product-card,
+.cart-card {
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.product-info,
+.cart-card,
+.feature,
+.login-form,
+.policy-container,
+.terms-container,
+.main-content section {
+    background: #fff;
+}
+
+.product-actions,
+.cart-actions {
+    background: #f8fafc;
+}
+
+.btn,
+.login-btn,
+.logout-btn,
+.btn-buy,
+.btn-remove,
+.btn-view-site,
+.add-btn,
+.delete-btn {
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+.btn:hover,
+.login-btn:hover,
+.logout-btn:hover,
+.btn-buy:hover,
+.btn-remove:hover,
+.btn-view-site:hover,
+.add-btn:hover,
+.delete-btn:hover {
+    transform: none;
+}
+
+.why-choose-us {
+    padding: 40px 20px;
+}
+
+.features-grid {
+    gap: 16px;
+}
+
+.feature {
+    padding: 16px;
+    border: 1px solid var(--border-light);
+    background: #fff;
+}
+
+#confirm-modal,
+#product-modal,
+#buy-now-modal,
+.modal {
+    background-color: rgba(15, 23, 42, 0.5);
+}
+
+.modal-content,
+.modal-box {
+    padding: 20px;
+    border: 1px solid var(--border-light);
+}
+
+.login-form {
+    padding: 28px;
+    border: 1px solid var(--border-light);
+}
+
+.policy-container,
+.terms-container {
+    padding: 28px;
+    margin: 32px auto;
+    border: 1px solid var(--border-light);
+}
+
+.contact-container {
+    gap: 20px;
+}
+
+.admin-header {
+    box-shadow: none;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.stat-card,
+table,
+table th,
+table td {
+    border-color: var(--border-light);
+}
