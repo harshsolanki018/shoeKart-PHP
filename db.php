@@ -9,6 +9,7 @@ $host = $_ENV['DB_HOST'];
 $user = $_ENV['DB_USER'];
 $pass = $_ENV['DB_PASS'];
 $dbname = $_ENV['DB_NAME'];
+$port = $_ENV['DB_PORT'] ?? 3306;
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
