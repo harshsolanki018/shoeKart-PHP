@@ -1,9 +1,20 @@
 FROM php:8.2-apache
 
-COPY . /var/www/html/
-
+# Install required PHP extensions
 RUN docker-php-ext-install mysqli
 
+# Enable Apache rewrite
 RUN a2enmod rewrite
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copy project files
+COPY . /var/www/html/
+
+WORKDIR /var/www/html
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
 
 EXPOSE 80
