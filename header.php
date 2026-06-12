@@ -135,11 +135,12 @@ if (!isset($showPreloader)) {
     <div class="h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600"></div>
 </div>
 <?php endif; ?>
+<?php $isAuthPage = $currentPage === 'login.php'; ?>
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <div class="flex items-center justify-between gap-4">
             <a href="index.php" class="text-2xl font-bold text-slate-900">ShoeMart</a>
-            <?php if (!empty($user)): ?>
+            <?php if (!empty($user) && !$isAuthPage): ?>
                 <div class="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 lg:hidden">
                     <i class="fa-solid fa-circle-user text-lg text-slate-700"></i>
                     <span class="text-sm font-semibold text-slate-700">Hi, <?= htmlspecialchars($user) ?></span>
@@ -165,7 +166,7 @@ if (!isset($showPreloader)) {
             <a href="admin_login.php" class="rounded px-3 py-2 hover:bg-slate-100">Admin</a>
         </nav>
         <div class="flex flex-wrap items-center gap-2">
-            <?php if (!empty($user)): ?>
+            <?php if (!empty($user) && !$isAuthPage): ?>
                 <div class="hidden items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 lg:flex">
                     <i class="fa-solid fa-circle-user text-xl text-slate-700"></i>
                     <div class="leading-tight">
