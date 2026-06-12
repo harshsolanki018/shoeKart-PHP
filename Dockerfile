@@ -3,6 +3,11 @@ FROM php:8.2-apache
 # Install required PHP extensions
 RUN docker-php-ext-install mysqli
 
+# Composer needs unzip available for package downloads
+RUN apt-get update \
+    && apt-get install -y unzip \
+    && rm -rf /var/lib/apt/lists/*
+
 # Enable Apache rewrite
 RUN a2enmod rewrite
 
