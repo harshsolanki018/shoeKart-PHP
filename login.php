@@ -2,7 +2,6 @@
 session_start();
 include 'db.php';
 
-$layout = 'auth';
 $pageTitle = 'Login / Sign up - ShoeMart';
 
 $mode = $_GET['mode'] ?? 'login';
