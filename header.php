@@ -136,8 +136,16 @@ if (!isset($showPreloader)) {
 </div>
 <?php endif; ?>
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <a href="index.php" class="text-2xl font-bold text-slate-900">ShoeMart</a>
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div class="flex items-center justify-between gap-4">
+            <a href="index.php" class="text-2xl font-bold text-slate-900">ShoeMart</a>
+            <?php if (!empty($user)): ?>
+                <div class="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 lg:hidden">
+                    <i class="fa-solid fa-circle-user text-lg text-slate-700"></i>
+                    <span class="text-sm font-semibold text-slate-700">Hi, <?= htmlspecialchars($user) ?></span>
+                </div>
+            <?php endif; ?>
+        </div>
         <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-700">
             <a href="index.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'home' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Home</a>
             <a href="sale.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'sale' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Sale</a>
@@ -156,6 +164,21 @@ if (!isset($showPreloader)) {
             <a href="order.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'order' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Orders</a>
             <a href="admin_login.php" class="rounded px-3 py-2 hover:bg-slate-100">Admin</a>
         </nav>
+        <div class="flex flex-wrap items-center gap-2">
+            <?php if (!empty($user)): ?>
+                <div class="hidden items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 lg:flex">
+                    <i class="fa-solid fa-circle-user text-xl text-slate-700"></i>
+                    <div class="leading-tight">
+                        <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">Welcome</p>
+                        <p class="text-sm font-semibold text-slate-900"><?= htmlspecialchars($user) ?></p>
+                    </div>
+                </div>
+                <a href="logout.php" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Logout</a>
+            <?php else: ?>
+                <a href="login.php?mode=login" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Login</a>
+                <a href="login.php?mode=register" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Sign up</a>
+            <?php endif; ?>
+        </div>
     </div>
 </header>
 <?php elseif ($layout === 'admin'): ?>
