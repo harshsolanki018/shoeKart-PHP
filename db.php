@@ -29,10 +29,10 @@ function parse_database_url(string $url): array
 $databaseUrl = env_value('DATABASE_URL');
 $databaseConfig = $databaseUrl ? parse_database_url($databaseUrl) : [];
 
-$host = $databaseConfig['host'] ?? env_value('MYSQLHOST', env_value('DB_HOST', '127.0.0.1'));
-$user = $databaseConfig['user'] ?? env_value('MYSQLUSER', env_value('DB_USER', 'root'));
+$host = $databaseConfig['host'] ?? env_value('MYSQLHOST', env_value('DB_HOST'));
+$user = $databaseConfig['user'] ?? env_value('MYSQLUSER', env_value('DB_USER'));
 $pass = $databaseConfig['pass'] ?? env_value('MYSQLPASSWORD', env_value('DB_PASS', ''));
-$dbname = $databaseConfig['dbname'] ?? env_value('MYSQLDATABASE', env_value('DB_NAME', ''));
+$dbname = $databaseConfig['dbname'] ?? env_value('MYSQLDATABASE', env_value('DB_NAME'));
 $port = (int) ($databaseConfig['port'] ?? env_value('MYSQLPORT', env_value('DB_PORT', 3306)));
 
 if (!$host || !$user || !$dbname) {
@@ -43,10 +43,10 @@ if (!$host || !$user || !$dbname) {
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 try {
-    $conn = new mysqli($host, $user, $pass, $dbname, $port ?: 3306);
+    $conn = @new mysqli($host, $user, $pass, $dbname, $port ?: 3306);
     $conn->set_charset('utf8mb4');
 } catch (Throwable $e) {
     error_log('Database connection failed: ' . $e->getMessage());
     http_response_code(500);
-    die('Database connection failed. Please check your environment variables.');
+    die('Database connection failed. Please check your Render environment variables and database host.');
 }
