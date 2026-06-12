@@ -137,17 +137,57 @@ if (!isset($showPreloader)) {
 <?php endif; ?>
 <?php $isAuthPage = $currentPage === 'login.php'; ?>
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div class="flex items-center justify-between gap-4">
+    <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-3">
             <a href="index.php" class="text-2xl font-bold text-slate-900">ShoeMart</a>
-            <?php if (!empty($user) && !$isAuthPage): ?>
-                <div class="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 lg:hidden">
-                    <i class="fa-solid fa-circle-user text-lg text-slate-700"></i>
-                    <span class="text-sm font-semibold text-slate-700">Hi, <?= htmlspecialchars($user) ?></span>
-                </div>
-            <?php endif; ?>
+            <div class="flex items-center gap-2">
+                <?php if (!empty($user) && !$isAuthPage): ?>
+                    <div class="hidden items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 lg:flex">
+                        <i class="fa-solid fa-circle-user text-lg text-slate-700"></i>
+                        <div class="leading-tight">
+                            <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">Welcome</p>
+                            <p class="text-sm font-semibold text-slate-900"><?= htmlspecialchars($user) ?></p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <details class="relative lg:hidden">
+                    <summary class="list-none rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm [&::-webkit-details-marker]:hidden cursor-pointer">
+                        Menu
+                    </summary>
+                    <div class="absolute right-0 z-50 mt-3 w-[min(90vw,20rem)] rounded-3xl border border-slate-200 bg-white p-3 shadow-xl">
+                        <?php if (!empty($user) && !$isAuthPage): ?>
+                            <div class="mb-3 rounded-2xl bg-slate-50 px-4 py-3">
+                                <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">Welcome</p>
+                                <p class="mt-1 text-sm font-semibold text-slate-900"><?= htmlspecialchars($user) ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <nav class="grid gap-1 text-sm text-slate-700">
+                            <a href="index.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100 <?= $activePage === 'home' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Home</a>
+                            <a href="sale.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100 <?= $activePage === 'sale' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Sale</a>
+                            <a href="mens.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100">Men's</a>
+                            <a href="womens.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100">Women's</a>
+                            <a href="kids.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100">Kids</a>
+                            <a href="collections.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100">Collections</a>
+                            <a href="trending.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100">Trending</a>
+                            <a href="wishlist.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100 <?= $activePage === 'wishlist' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Wishlist</a>
+                            <a href="cart.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100 <?= $activePage === 'cart' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Cart</a>
+                            <a href="order.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100 <?= $activePage === 'order' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Orders</a>
+                            <a href="admin_login.php" class="rounded-2xl px-3 py-2 hover:bg-slate-100">Admin</a>
+                        </nav>
+                        <div class="mt-3 flex flex-col gap-2 border-t border-slate-200 pt-3">
+                            <?php if (!empty($user) && !$isAuthPage): ?>
+                                <a href="logout.php" class="rounded-full border border-slate-300 px-4 py-2 text-center text-sm font-semibold text-slate-700 hover:bg-slate-100">Logout</a>
+                            <?php else: ?>
+                                <a href="login.php?mode=login" class="rounded-full border border-slate-300 px-4 py-2 text-center text-sm font-semibold text-slate-700 hover:bg-slate-100">Login</a>
+                                <a href="login.php?mode=register" class="rounded-full bg-slate-900 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-slate-800">Sign up</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </details>
+            </div>
         </div>
-        <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-700">
+        <div class="mt-4 hidden items-center justify-between gap-4 lg:flex">
+            <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-700">
             <a href="index.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'home' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Home</a>
             <a href="sale.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'sale' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Sale</a>
             <div class="group relative">
@@ -164,32 +204,28 @@ if (!isset($showPreloader)) {
             <a href="cart.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'cart' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Cart</a>
             <a href="order.php" class="rounded px-3 py-2 hover:bg-slate-100 <?= $activePage === 'order' ? 'bg-slate-100 font-semibold text-slate-900' : '' ?>">Orders</a>
             <a href="admin_login.php" class="rounded px-3 py-2 hover:bg-slate-100">Admin</a>
-        </nav>
-        <div class="flex flex-wrap items-center gap-2">
+            </nav>
             <?php if (!empty($user) && !$isAuthPage): ?>
-                <div class="hidden items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 lg:flex">
-                    <i class="fa-solid fa-circle-user text-xl text-slate-700"></i>
-                    <div class="leading-tight">
-                        <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">Welcome</p>
-                        <p class="text-sm font-semibold text-slate-900"><?= htmlspecialchars($user) ?></p>
-                    </div>
-                </div>
+                <div class="flex items-center gap-3">
                 <a href="logout.php" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Logout</a>
+                </div>
             <?php else: ?>
-                <a href="login.php?mode=login" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Login</a>
-                <a href="login.php?mode=register" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Sign up</a>
+                <div class="flex items-center gap-2">
+                    <a href="login.php?mode=login" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Login</a>
+                    <a href="login.php?mode=register" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Sign up</a>
+                </div>
             <?php endif; ?>
         </div>
     </div>
 </header>
 <?php elseif ($layout === 'admin'): ?>
 <header class="border-b border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div>
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div class="flex flex-col gap-1">
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Admin</p>
             <h1 class="text-2xl font-bold text-slate-900">ShoeMart Dashboard</h1>
         </div>
-        <div class="flex items-center gap-3 text-sm">
+        <div class="flex flex-wrap items-center gap-2 text-sm">
             <span class="text-slate-600"><?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Admin'); ?></span>
             <a href="./index.php" class="rounded border border-slate-300 px-3 py-2 font-semibold text-slate-700 hover:bg-slate-100">View Site</a>
             <a href="?action=logout" class="rounded bg-slate-900 px-3 py-2 font-semibold text-white hover:bg-slate-800">Logout</a>
@@ -198,14 +234,14 @@ if (!isset($showPreloader)) {
 </header>
 <?php elseif ($layout === 'auth'): ?>
 <header class="border-b border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <a href="index.php" class="text-xl font-bold text-slate-900">ShoeMart</a>
         <a href="index.php" class="rounded border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Back to site</a>
     </div>
 </header>
 <?php else: ?>
 <header class="border-b border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <a href="index.php" class="text-xl font-bold text-slate-900">ShoeMart</a>
         <a href="index.php" class="rounded border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Home</a>
     </div>
